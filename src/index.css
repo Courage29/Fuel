@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Oswald:wght@300;400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS VARIABLES ─────────────────────────────── */
+:root {
+  --bg: #080808;
+  --bg2: #111111;
+  --bg3: #1a1a1a;
+  --panel: #0f0f0f;
+  --amber: #f5a623;
+  --amber-dim: #b87a10;
+  --red: #d0021b;
+  --green: #00c851;
+  --text: #e8e0d0;
+  --text-dim: #9a9080;
+  --border: #2a2520;
+  --stripe1: #f5a623;
+  --stripe2: #111111;
+  --glow: rgba(245, 166, 35, 0.4);
+  --glow-red: rgba(208, 2, 27, 0.4);
+}
+
+[data-theme='light'] {
+  --bg: #f0ebe0;
+  --bg2: #e8e0d0;
+  --bg3: #ddd5c0;
+  --panel: #fffdf7;
+  --amber: #c47d00;
+  --amber-dim: #8a5800;
+  --red: #b00016;
+  --green: #006620;
+  --text: #1a1510;
+  --text-dim: #5a4f40;
+  --border: #c0b090;
+  --stripe1: #c47d00;
+  --stripe2: #f0ebe0;
+  --glow: rgba(196, 125, 0, 0.3);
+  --glow-red: rgba(176, 0, 22, 0.3);
+}
+
+/* ─── BASE ──────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ─── SCROLLBAR ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--amber-dim); }
+
+/* ─── ANIMATIONS ────────────────────────────────── */
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes stripeScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 0; }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+@keyframes needleSweep {
+  from { transform: rotate(-90deg); }
+  to   { transform: rotate(52deg); }
+}
+@keyframes wavePulse {
+  from { transform: scaleY(0.3); opacity: 0.5; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* ─── UTILITY CLASSES ───────────────────────────── */
+.font-bebas { font-family: 'Bebas Neue', sans-serif; }
+.font-mono-fuel { font-family: 'Share Tech Mono', monospace; }
+.font-oswald { font-family: 'Oswald', sans-serif; }
+
+.text-amber { color: var(--amber); }
+.text-red-crisis { color: var(--red); }
+.text-fuel { color: var(--text); }
+.text-muted { color: var(--text-dim); }
+
+.bg-fuel { background: var(--bg); }
+.bg-fuel2 { background: var(--bg2); }
+.bg-fuel3 { background: var(--bg3); }
+.bg-panel { background: var(--panel); }
+
+.border-fuel { border-color: var(--border); }
+.border-amber { border-color: var(--amber); }
+.border-red { border-color: var(--red); }
+
+.glow-amber { box-shadow: 0 0 30px var(--glow); }
+.glow-text-amber { text-shadow: 0 0 20px var(--amber); }
+
+/* ─── SKEW BUTTON CLIP ──────────────────────────── */
+.btn-skew {
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.btn-skew-sm {
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+/* ─── HAZARD STRIPE ─────────────────────────────── */
+.hazard-stripe {
+  height: 18px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--stripe1) 0px, var(--stripe1) 14px,
+    var(--stripe2) 14px, var(--stripe2) 28px
+  );
+}
+
+/* ─── TICKER ────────────────────────────────────── */
+.ticker-track {
+  display: flex;
+  gap: 0;
+  animation: tickerScroll 35s linear infinite;
+  white-space: nowrap;
+}
+.ticker-bar-stripe {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--stripe1) 0px, var(--stripe1) 20px,
+    var(--stripe2) 20px, var(--stripe2) 40px
+  );
+  animation: stripeScroll 1s linear infinite;
+  background-size: 40px 100%;
+}
+
+/* ─── GAUGE NEEDLE ──────────────────────────────── */
+.gauge-needle {
+  transform-origin: 50% 85.5%;
+  transform: rotate(-90deg);
+  animation: needleSweep 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+}
+
+/* ─── REVEAL ON SCROLL ──────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── CAROUSEL ──────────────────────────────────── */
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ─── BROADCAST ON AIR BADGE ────────────────────── */
+.on-air-badge::before {
+  content: '⬤ ON AIR';
+  position: absolute;
+  top: -1px;
+  right: 20px;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 4px 10px;
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── WAVE BARS ─────────────────────────────────── */
+.wave-bar {
+  width: 3px;
+  background: var(--amber);
+  border-radius: 2px;
+  height: 3px;
+  opacity: 0.25;
+  transition: height 0.2s ease;
+}
+.wave-bar.playing {
+  opacity: 1;
+  animation: wavePulse 0.6s ease-in-out infinite alternate;
+}
+.wave-bar.playing:nth-child(1) { height: 8px;  animation-delay: 0s; }
+.wave-bar.playing:nth-child(2) { height: 16px; animation-delay: 0.1s; }
+.wave-bar.playing:nth-child(3) { height: 12px; animation-delay: 0.2s; }
+.wave-bar.playing:nth-child(4) { height: 18px; animation-delay: 0.15s; }
+.wave-bar.playing:nth-child(5) { height: 10px; animation-delay: 0.05s; }
+.wave-bar.playing:nth-child(6) { height: 16px; animation-delay: 0.25s; }
+.wave-bar.playing:nth-child(7) { height: 6px;  animation-delay: 0.3s; }
+
+/* ─── STAT CARD HOVER ───────────────────────────── */
+.stat-card {
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  border-color: var(--amber);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px var(--glow);
+}
+
+/* ─── SOCIAL CARD ───────────────────────────────── */
+.social-card {
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.social-card:hover {
+  border-color: var(--amber);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px var(--glow);
+}
+
+/* ─── PUMP STEP ─────────────────────────────────── */
+.pump-step {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.pump-step:hover {
+  box-shadow: -4px 0 16px var(--glow);
+}
+
+/* ─── CHART FRAME ───────────────────────────────── */
+.chart-frame iframe {
+  width: 100%;
+  height: clamp(300px, 45vw, 440px);
+  border: none;
+  display: block;
+}
+
+/* ─── HERO GRAIN OVERLAY ────────────────────────── */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ─── MOBILE NAV ────────────────────────────────── */
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 61px;
+    left: 0;
+    right: 0;
+    background: var(--bg2);
+    padding: 20px 24px;
+    gap: 18px;
+    border-bottom: 1px solid var(--border);
+    z-index: 200;
+  }
+}
