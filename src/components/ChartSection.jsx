@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { useReveal } from '../hooks/useReveal'
 
 const TOKEN   = 'GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump'
@@ -22,12 +23,36 @@ function buildEmbedUrl(theme = 'dark') {
 }
 
 export default function ChartSection({ theme }) {
-  const labelRef     = useReveal()
-  const titleRef     = useReveal()
-  const frameRef     = useReveal()
+  const labelRef   = useReveal()
+  const titleRef   = useReveal()
+  const frameRef   = useReveal()
+  const sectionRef = useRef(null)
+
+  const [inView, setInView] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+
+  // Only mount the iframe once the section is near the viewport
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } },
+      { rootMargin: '300px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  // Reset loaded state on theme change so skeleton shows during remount
+  useEffect(() => { setLoaded(false) }, [theme])
 
   return (
-    <div id="chart-section" className="w-full py-20" style={{ background: 'var(--bg2)' }}>
+    <div
+      id="chart-section"
+      ref={sectionRef}
+      className="w-full py-20"
+      style={{ background: 'var(--bg2)' }}
+    >
       <div className="max-w-[1100px] mx-auto px-6">
         <p
           ref={labelRef}
@@ -48,14 +73,27 @@ export default function ChartSection({ theme }) {
         <div
           ref={frameRef}
           className="reveal chart-frame border"
-          style={{ borderColor: 'var(--border)' }}
+          style={{ borderColor: 'var(--border)', position: 'relative' }}
         >
-          <iframe
-            key={theme}                      // remount when theme changes
-            src={buildEmbedUrl(theme)}
-            title="$FUEL Live Chart on DexScreener"
-            allow="clipboard-write"
-          />
+          {/* Skeleton shown until iframe fires onLoad */}
+          {!loaded && (
+            <div className="chart-skeleton" aria-hidden="true" />
+          )}
+
+          {inView && (
+            <iframe
+              key={theme}
+              src={buildEmbedUrl(theme)}
+              title="$FUEL Live Chart on DexScreener"
+              allow="clipboard-write"
+              loading="lazy"
+              onLoad={() => setLoaded(true)}
+              style={{
+                opacity: loaded ? 1 : 0,
+                transition: 'opacity 0.5s ease',
+              }}
+            />
+          )}
         </div>
 
         <p

@@ -239,11 +239,35 @@ body {
 }
 
 /* ─── CHART FRAME ───────────────────────────────── */
+.chart-frame {
+  position: relative;
+}
+
 .chart-frame iframe {
   width: 100%;
   height: clamp(300px, 45vw, 440px);
   border: none;
   display: block;
+}
+
+.chart-skeleton {
+  width: 100%;
+  height: clamp(300px, 45vw, 440px);
+  background: linear-gradient(
+    90deg,
+    var(--bg2) 25%,
+    var(--border) 50%,
+    var(--bg2) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-sweep 1.6s ease-in-out infinite;
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes skeleton-sweep {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 /* ─── HERO GRAIN OVERLAY ────────────────────────── */
