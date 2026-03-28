@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useReveal } from '../hooks/useReveal'
 
-const CA = 'Af6Fbfkx61tP7ytKtaaJbaYBxMbi1824eigp4oytpump'
+const CA = 'GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump'
 
 const STEPS = [
   {
@@ -176,7 +176,7 @@ export default function HowToBuy() {
         {/* Buy button */}
         <div className="flex justify-center mt-8">
           <a
-            href="https://dexscreener.com/solana/eayfleoidwbcqr2wtv2hdckuvj7zj7jun8gv2yuawu99"
+            href="https://dexscreener.com/solana/GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-skew px-12 py-[15px] font-bebas text-[22px] tracking-[3px] text-black no-underline transition-all duration-200 hover:-translate-y-[2px]"

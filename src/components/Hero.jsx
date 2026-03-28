@@ -1,7 +1,7 @@
 import { useLivePrice } from '../hooks/useLivePrice'
 
-const CA = 'Af6Fbfkx61tP7ytKtaaJbaYBxMbi1824eigp4oytpump'
-const DEX_LINK = 'https://dexscreener.com/solana/eayfleoidwbcqr2wtv2hdckuvj7zj7jun8gv2yuawu99'
+const CA = 'GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump'
+const DEX_LINK = 'https://dexscreener.com/solana/GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump'
 
 function FuelGaugeSVG() {
   return (

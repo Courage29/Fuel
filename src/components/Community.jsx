@@ -11,13 +11,13 @@ const SOCIALS = [
     icon: '📊',
     name: 'DexScreener',
     label: 'Live Chart & Trading',
-    href: 'https://dexscreener.com/solana/eayfleoidwbcqr2wtv2hdckuvj7zj7jun8gv2yuawu99',
+    href: 'https://dexscreener.com/solana/GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump',
   },
   {
     icon: '⛽',
     name: 'Pump.fun',
     label: 'Token Launch Page',
-    href: 'https://pump.fun',
+    href: 'https://pump.fun/coin/GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump',
   },
 ]
 

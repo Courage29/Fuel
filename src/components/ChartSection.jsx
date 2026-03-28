@@ -1,7 +1,8 @@
 import { useReveal } from '../hooks/useReveal'
 
-const PAIR    = 'eayfleoidwbcqr2wtv2hdckuvj7zj7jun8gv2yuawu99'
-const DEX_URL = `https://dexscreener.com/solana/${PAIR}`
+const TOKEN   = 'GupRnmNvMrFgKuz91hgNUpVbJ8FtGZ1av2sdkw6Vpump'
+const PAIR    = 'FnpwxR1JGL2rF6mJ12s2nL7piMNJc5B4upjKzCkGEkEZ'
+const DEX_URL = `https://dexscreener.com/solana/${TOKEN}`
 
 function buildEmbedUrl(theme = 'dark') {
   const params = new URLSearchParams({
@@ -17,7 +18,7 @@ function buildEmbedUrl(theme = 'dark') {
     chartType: 'usd',
     interval: '15',
   })
-  return `${DEX_URL}?${params.toString()}`
+  return `https://dexscreener.com/solana/${PAIR}?${params.toString()}`
 }
 
 export default function ChartSection({ theme }) {
