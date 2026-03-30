@@ -145,6 +145,13 @@ export default function Hero({ onScrollToBroadcast }) {
         Solana · The only thing still pumping · 2025
       </p>
 
+      <p
+        className="font-mono-fuel uppercase tracking-[3px] mt-3 relative z-10"
+        style={{ fontSize: 'clamp(9px,2vw,11px)', color: 'var(--amber)', animation: 'blink 1.2s step-end infinite' }}
+      >
+        ⚡ AI buyback engine live · supply runs low · prices go up
+      </p>
+
       <PriceBoard price={price} change={change} volume={volume} loading={loading} />
 
       {/* CTA buttons */}

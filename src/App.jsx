@@ -10,9 +10,10 @@ import About         from './components/About'
 import NewsCarousel  from './components/NewsCarousel'
 import ChartSection  from './components/ChartSection'
 import HowToBuy      from './components/HowToBuy'
-import Community     from './components/Community'
-import Footer        from './components/Footer'
-import RadioWidget   from './components/RadioWidget'
+import Community          from './components/Community'
+import Footer             from './components/Footer'
+import RadioWidget        from './components/RadioWidget'
+import AnnouncementStrip  from './components/AnnouncementStrip'
 
 export default function App() {
   const { theme, toggleTheme } = useTheme()
@@ -44,6 +45,8 @@ export default function App() {
         <NewsCarousel />
 
         <ChartSection theme={theme} />
+
+        <AnnouncementStrip />
 
         <HazardDivider />
 

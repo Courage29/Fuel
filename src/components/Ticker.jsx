@@ -9,6 +9,10 @@ const ITEMS = [
   '🇱🇦 Laos fuel up +30% and still rising',
   '🚨 Strait of Hormuz tensions drive global oil prices higher',
   '💀 The pumps are dry. The chart is not.',
+  '🤖 World\'s first AI agent doing buybacks & burns is LIVE',
+  '🔥 80% of fees go to buyback & burn $FUEL — supply shrinking',
+  '📉 $FUEL supply running low — price going up',
+  '⚡ AI-powered burn engine active — $FUEL deflationary now',
 ]
 
 // Duplicate for seamless infinite scroll
